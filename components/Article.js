@@ -1,8 +1,7 @@
 // This is the data we will be using to create our articles. Look at it, then proceed to line 93.
 // OPTIONAL: if you're feeling adventurous, try to make this data an export from a different module, and import it here.
 // You can read about ES6 modules here: https://exploringjs.com/es6/ch_modules.html#sec_basics-of-es6-modules
-const data = [
-  {
+const data = [{
     title: 'Lambda School Students: "We\'re the best!"',
     date: 'Nov 5th, 2018',
     firstParagraph: `Lucas ipsum dolor sit amet ben twi'lek padmé darth darth darth moff hutt organa twi'lek. Ben amidala secura skywalker lando
@@ -88,6 +87,49 @@ const data = [
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
   }
 ];
+const div = document.querySelector(".articles");
+
+function articleMaker(data) {
+  const div = document.createElement('div');
+  const h2 = document.createElement('h2');
+  const p = document.createElement('p');
+  const para1 = document.createElement('p');
+  const para2 = document.createElement('p');
+  const para3 = document.createElement('p');
+  const button = document.createElement('span');
+
+  div.appendChild(h2);
+  div.appendChild(p);
+  div.appendChild(para1);
+  div.appendChild(para2);
+  div.appendChild(para3);
+  div.appendChild(button);
+
+  div.classList.add("article");
+  p.classList.add("date");
+  button.classList.add("expandButton");
+
+  h2.textContent = data.title;
+  p.textContent = data.date;
+  para1.textContent = data.firstParagraph;
+  para2.textContent = data.secondParagraph;
+  para3.textContent = data.thirdParagraph;
+  button.textContent = "+";
+
+  button.addEventListener("click", function(){
+    div.classList.toggle('article-open');
+  });
+
+  return div
+}
+
+data.forEach((artElements)=>{ 
+  div.appendChild(articleMaker(artElements));
+})
+
+
+
+
 
 /*
   Step 1: Write a component called 'articleMaker' to create an article.
